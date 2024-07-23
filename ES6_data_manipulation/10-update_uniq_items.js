@@ -1,10 +1,13 @@
-export default function updateUniqueItems(groceries) {
-    if (Object.getPrototypeOf(groceries) !== Map.prototype) throw TypeError('Cannot process');
-  
-    groceries.forEach((val, key) => {
-      if (val === 1) {
-        groceries.set(key, 100);
-      }
-    });
-    return groceries;
+function updateUniqueItems(map) {
+  if (!(map instanceof Map)) {
+    throw Error('Cannot process');
   }
+
+  for (const [key] of map) {
+    if (map.get(key) === 1) map.set(key, 100);
+  }
+
+  return map;
+}
+
+export default updateUniqueItems;
